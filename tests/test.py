@@ -272,7 +272,8 @@ class TestNotes(TestCase):
         res = self.client.delete('/notes/2', headers=self.headers)
         data = json.loads(res.data)
         self.assertEqual(res.status_code, 200)
-        self.assertEqual(data["text"], notes_data[1]["text"])
+        self.assertNotEqual(data[0]["text"], notes_data[1]["text"])
+       
 
     def test_delete_not_found_note(self):
         """
